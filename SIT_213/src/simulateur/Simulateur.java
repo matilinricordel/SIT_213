@@ -425,7 +425,7 @@ public class Simulateur {
      */   	   
     public float  calculTauxErreurBinaire() {
     	
-    	System.out.println("calcul TEB");
+    	//System.out.println("calcul TEB");
 		Information<Boolean> emission = source.getInformationEmise();
 		Information<Boolean> reception = destination.getInformationRecue();
 		//System.out.println(source.getInformationEmise());
