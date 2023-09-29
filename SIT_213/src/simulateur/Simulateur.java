@@ -21,7 +21,7 @@ import java.util.Iterator;
  * Transmetteur(s) et d'une Destination.
  * @author cousin
  * @author prou
- *
+ * heho
  */
 public class Simulateur {
       	
