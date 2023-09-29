@@ -1,0 +1,3 @@
+echo "==== Compilation ===="
+javac -source 11 -target 11 -encoding Cp1252 -d bin ./src/*/*.java
+echo "=== End ==="

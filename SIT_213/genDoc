@@ -1,0 +1,2 @@
+#!/bin/bash
+javadoc -quiet -d ./docs/ ./src/destinations/*.java ./src/information/*.java ./src/ressources/*.java ./src/simulateur/*.java ./src/sources/*.java ./src/transmetteurs/*.java ./src/visualisations/*.java

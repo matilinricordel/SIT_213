@@ -1,0 +1,5 @@
+#!/bin/bash
+cd bin
+chmod 755 simulateur/Simulateur.class
+java simulateur/Simulateur $@
+cd ..

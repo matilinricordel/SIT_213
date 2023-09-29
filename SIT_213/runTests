@@ -1,0 +1,4 @@
+echo "=== Start simulateur ==="
+chmod +x ./bin/simulateur/Simulateur.class
+java -cp bin simulateur.Simulateur $@ -s
+echo "=== End ==="
