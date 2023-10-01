@@ -7,12 +7,28 @@ import java.util.Random;
 
 import static ressources.Signal.*;
 
+/**
+ * 
+ */
 public class TransmetteurBruit extends TransmetteurAnalogique{
+    /**
+     * 
+     */
     protected int nbTechantillon;
+    /**
+     * 
+     */
     protected double rsb;
+    /**
+     * 
+     */
     protected Random random;
 
 
+    /**
+     * @param nbTechantillon .
+     * @param rsbEndB .
+     */
     public TransmetteurBruit(int nbTechantillon, double rsbEndB)
     {
         this.nbTechantillon = nbTechantillon;
@@ -20,6 +36,11 @@ public class TransmetteurBruit extends TransmetteurAnalogique{
         this.random = new Random();
     }
 
+    /**
+     * @param nbTechantillon .
+     * @param rsbEndB .
+     * @param seed .
+     */
     public TransmetteurBruit(int nbTechantillon, double rsbEndB, int seed)
     {
         this.nbTechantillon = nbTechantillon;
@@ -27,6 +48,9 @@ public class TransmetteurBruit extends TransmetteurAnalogique{
         this.random = new Random(seed);
     }
 
+    /**
+     *
+     */
     @Override
     public void traitementduSignal() {
         // Puissance = variance

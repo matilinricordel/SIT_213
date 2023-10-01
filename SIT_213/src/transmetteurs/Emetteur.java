@@ -4,6 +4,9 @@ import destinations.DestinationInterface;
 import information.Information;
 import information.InformationNonConformeException;
 
+/**
+ * 
+ */
 public abstract class Emetteur extends Transmetteur<Boolean, Float>{
 	/*
 	 * Instanciation des param�tres par d�faut
@@ -12,6 +15,9 @@ public abstract class Emetteur extends Transmetteur<Boolean, Float>{
 	 * nbTechantillon - int qui correspond au nombre d'�chantillon par bit
 	 * 
 	 */
+    /**
+     * 
+     */
     protected int nbTechantillon;
 
     /* 
@@ -24,7 +30,10 @@ public abstract class Emetteur extends Transmetteur<Boolean, Float>{
      * InformationNonConformeException - V�rifie que l'information est conforme
      * 
      */
-     @Override
+     /**
+     *
+     */
+    @Override
     public void recevoir(Information<Boolean> information) throws InformationNonConformeException {
         this.informationRecue = information;
         conversion();
@@ -37,6 +46,9 @@ public abstract class Emetteur extends Transmetteur<Boolean, Float>{
      * @exception 
      * InformationNonConformeException - V�rifie que l'information est conforme
      * 
+     */
+    /**
+     *
      */
     @Override
     public void emettre() throws InformationNonConformeException {
@@ -53,6 +65,9 @@ public abstract class Emetteur extends Transmetteur<Boolean, Float>{
      * 
      * @exception 
      * InformationNonConformeException - V�rifie que l'information est conforme
+     * 
+     */
+    /**
      * 
      */
     public abstract void conversion();

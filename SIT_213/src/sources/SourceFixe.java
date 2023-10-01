@@ -1,7 +1,13 @@
 package sources;
 import information.Information;
 
+/**
+ * 
+ */
 public class SourceFixe extends Source<Boolean>{
+    /**
+     * @param message .
+     */
     public SourceFixe(String message)
     {
         informationGeneree = new Information<Boolean>();

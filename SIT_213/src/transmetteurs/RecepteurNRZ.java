@@ -5,6 +5,9 @@ import information.InformationNonConformeException;
 
 import java.util.Iterator;
 
+/**
+ * 
+ */
 public class RecepteurNRZ extends Recepteur{
 	/*
 	 * Constructeur du récepteur NRZ ou NRZT
@@ -15,6 +18,11 @@ public class RecepteurNRZ extends Recepteur{
 	 * vmin - float qui correspond à la tension minimal du signal analogique
 	 * 
 	 */
+    /**
+     * @param nbTechantillon .
+     * @param vmax .
+     * @param vmin .
+     */
     public RecepteurNRZ(int nbTechantillon, float vmax, float vmin) {
         super(nbTechantillon, vmax, vmin);
     }
@@ -25,6 +33,9 @@ public class RecepteurNRZ extends Recepteur{
      * @exception 
      * InformationNonConformeException - Vérifie que l'information est conforme
      * 
+     */
+    /**
+     *
      */
     public void deconversion() {
     	/* Déclaration et instanciation du seuil.
@@ -64,6 +75,10 @@ public class RecepteurNRZ extends Recepteur{
         }
     }
 
+    /**
+     * @param args .
+     * @throws InformationNonConformeException .
+     */
     public static void main(String[] args) throws InformationNonConformeException {
         Information<Float> test = new Information<Float>();
         test.add(5f);

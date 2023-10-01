@@ -21,7 +21,6 @@ import java.util.Iterator;
  * Transmetteur(s) et d'une Destination.
  * @author cousin
  * @author prou
- * heho
  */
 public class Simulateur {
       	
@@ -83,8 +82,8 @@ public class Simulateur {
    	private RecepteurAnalogiqueMultiTrajet recepteurMultiTrajet = null;
    
     /** Le constructeur de Simulateur construit une chaîne de
-     * transmission composée d'une Source <Boolean>, d'une Destination
-     * <Boolean> et de Transmetteur(s) [voir la méthode
+     * transmission composée d'une Source Boolean, d'une Destination
+     * Boolean et de Transmetteur(s) [voir la méthode
      * analyseArguments]...  <br> Les différents composants de la
      * chaîne de transmission (Source, Transmetteur(s), Destination,
      * Sonde(s) de visualisation) sont créés et connectés.
@@ -453,6 +452,7 @@ public class Simulateur {
      *  arguments paramètres et affiche le résultat de l'exécution
      *  d'une transmission.
      *  @param args les différents arguments qui serviront à l'instanciation du Simulateur.
+     * @throws IOException .
      */
     public static void main(String [] args) throws IOException {
 
