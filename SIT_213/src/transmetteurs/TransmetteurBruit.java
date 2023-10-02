@@ -32,7 +32,7 @@ public class TransmetteurBruit extends TransmetteurAnalogique{
     public TransmetteurBruit(int nbTechantillon, double rsbEndB)
     {
         this.nbTechantillon = nbTechantillon;
-        this.rsb = Math.pow(10, (rsbEndB/10));
+        this.rsb = rsbEndB; //Math.pow(10, (rsbEndB/10));
         this.random = new Random();
     }
 
@@ -44,7 +44,8 @@ public class TransmetteurBruit extends TransmetteurAnalogique{
     public TransmetteurBruit(int nbTechantillon, double rsbEndB, int seed)
     {
         this.nbTechantillon = nbTechantillon;
-        this.rsb = Math.pow(10, (rsbEndB/10));
+        //this.rsb = Math.pow(10, (rsbEndB/10));
+        this.rsb = rsbEndB;
         this.random = new Random(seed);
     }
 
@@ -58,7 +59,12 @@ public class TransmetteurBruit extends TransmetteurAnalogique{
         //System.out.println("rsb = "+rsb);
         //rsb = Math.pow(10, rsb/10);
         //System.out.println(puissanceSignal(informationRecue));
-        variance = ((puissanceSignal(informationRecue)))*(1/rsb);
+        // EX // variance = ((puissanceSignal(informationRecue)))*(1/rsb);
+        System.out.println("puissance signal = "+puissanceSignal(informationRecue));
+        variance = ((puissanceSignal(informationRecue)))/Math.pow(10, rsb/10);
+        System.out.println("rsb = "+rsb);
+        //System.out.println("10^rsb/10 = "+Math.pow(10, rsb/10));
+        System.out.println("variance = "+variance);
         //System.out.println("variance  = " + variance);
         Information<Float> bruit = new Information<Float>();
         bruit = generationWhiteNoise(variance, informationRecue.nbElements(), random);

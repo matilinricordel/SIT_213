@@ -26,7 +26,9 @@ public class Signal {
         for(int i = 0; i < taille; i++)
         {
             // Ajustement des valeurs de la normale centrée réduite avec écart type
-            bbg.add((float) (random.nextGaussian()*variance));
+        	//System.out.println("variance = "+variance);
+        	//System.out.println("variance = "+variance);
+            bbg.add((float) (random.nextGaussian()*Math.sqrt(variance)));
             //System.out.println(random.nextGaussian()*variance);
         }
 
@@ -35,6 +37,9 @@ public class Signal {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        //System.out.println(bbg);
+        System.out.println("puissance bbg = "+puissanceSignal(bbg));
+        
         
         return bbg;
     }
@@ -44,7 +49,7 @@ public class Signal {
      * @throws IOException .
      */
     public static void writeNoiseToCsv(Information<Float> bbg) throws IOException {
-        /*
+        
     	FileWriter writer = new FileWriter("output/bruit_blanc.csv");
         Iterator<Float> valeursgauss = bbg.iterator();
         while(valeursgauss.hasNext())
@@ -53,7 +58,7 @@ public class Signal {
             writer.write(";\n");
         }
         writer.close();
-        */
+        
     }
 
     /**
@@ -73,6 +78,7 @@ public class Signal {
         //System.out.println((double)somme/signal.nbElements());
         //return (double)somme/signal.nbElements();
         //System.out.println(signal.nbElements());
+        //System.out.println("puissance = "+(double)somme/signal.nbElements());
         return (double)somme/signal.nbElements();
     }
 
