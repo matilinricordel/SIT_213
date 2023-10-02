@@ -75,9 +75,9 @@ public class TrajetsMultiples extends Transmetteur<Float, Float> {
         Iterator<Float> iterator = this.informationRecue.iterator();
         trajet = new Information<>();
         for (int i = 0; i < this.informationRecue.nbElements(); i++) {
-        	
+        	//System.out.println(attenuation);
             if (i > decalage) {
-                trajet.add(attenuation * iterator.next());
+                trajet.add(attenuation/2 * iterator.next());
             } else {
                 trajet.add(0f);
             }

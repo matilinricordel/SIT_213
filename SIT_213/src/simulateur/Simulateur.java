@@ -45,7 +45,7 @@ public class Simulateur {
     private String messageString = "100";
 
 	/** indique le nombre d'échantillons par symbole en analogique*/
-	private int nombreEchantillon=100;
+	private int nombreEchantillon=30;
 
 	/** indique le type de l'échange*/
 	private String type="Logique";
