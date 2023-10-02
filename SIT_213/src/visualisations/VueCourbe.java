@@ -8,15 +8,32 @@ package visualisations;
 import java.awt.*;
 import java.awt.geom.*;
 
+/**
+ * 
+ */
 public class VueCourbe  extends Vue {
     
     private static final long serialVersionUID = 1917L;
    
+    /**
+     * 
+     */
     private Point2D.Float [] coordonnees;
+    /**
+     * 
+     */
     private float yMax = 0;
+    /**
+     * 
+     */
     private float yMin = 0;
    	
    	
+    /**
+     * @param valeurs .
+     * @param nbPixels .
+     * @param nom .
+     */
     public  VueCourbe (boolean [] valeurs, int nbPixels, String nom) {   
        
 	super(nom); 
@@ -52,6 +69,10 @@ public class VueCourbe  extends Vue {
     }
    
    
+    /**
+     * @param valeurs .
+     * @param nom .
+     */
     public  VueCourbe (float [] valeurs, String nom) {   
        
 	super(nom);      
@@ -82,6 +103,9 @@ public class VueCourbe  extends Vue {
     }
    
    
+    /**
+     * @param valeurs .
+     */
     public  void changer (boolean [] valeurs) {   
              	
 	this.coordonnees = new Point2D.Float [(2 * valeurs.length) + 1];
@@ -104,6 +128,9 @@ public class VueCourbe  extends Vue {
 	paint();
     }
    
+    /**
+     * @param valeurs .
+     */
     public  void changer (float [] valeurs) {   
              
 	this.coordonnees = new Point2D.Float [valeurs.length];
@@ -125,11 +152,17 @@ public class VueCourbe  extends Vue {
    
     /**
      */
+    /**
+     * 
+     */
     public void paint() {
 	paint(getGraphics());
     }
    
    	
+    /**
+     *
+     */
     public void paint(Graphics g) {
 	if (g == null) {
             return;

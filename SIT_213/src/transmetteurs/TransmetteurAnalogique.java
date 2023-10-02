@@ -23,6 +23,9 @@ public abstract class TransmetteurAnalogique extends Transmetteur<Float, Float>{
         emettre();
     }
 
+    /**
+     *
+     */
     @Override
     public void emettre() throws InformationNonConformeException {
         for(DestinationInterface<Float> destination : destinationsConnectees)
@@ -32,5 +35,8 @@ public abstract class TransmetteurAnalogique extends Transmetteur<Float, Float>{
         informationTraite = informationEmise;
     }
 
+    /**
+     * 
+     */
     public abstract void traitementduSignal();
 }

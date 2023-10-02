@@ -9,6 +9,9 @@ import information.Information;
 import information.InformationNonConformeException;
 import simulateur.ArgumentsException;
 
+/**
+ * 
+ */
 public class RecepteurAnalogiqueMultiTrajet extends Transmetteur<Float, Float> {
 
 
@@ -18,7 +21,7 @@ public class RecepteurAnalogiqueMultiTrajet extends Transmetteur<Float, Float> {
 	 * Constructeur initialisant un récépteur multitrajet
 	 * @param tau tableau des décalages
 	 * @param alpha tableau des atténuations
-	 * @throws RecepteurAnalogiqueMultiTrajetNonConforme
+	 * @throws Exception .
 	 */
 	public RecepteurAnalogiqueMultiTrajet(ArrayList<Integer> tau, ArrayList<Float> alpha) throws Exception {
 			
@@ -45,7 +48,7 @@ public class RecepteurAnalogiqueMultiTrajet extends Transmetteur<Float, Float> {
 	/**
 	 * Méthode permettant de recevoir une information d'enlever du multi-trajet et de transmettre 
 	 * @param information : L'information (de type double) recue
-	 * @throws InformationNonConforme : L'information n'est pas conforme (exemple : information null)
+	 * @throws InformationNonConformeException : L'information n'est pas conforme (exemple : information null)
 	*/
 	
 	@Override
@@ -98,7 +101,7 @@ public class RecepteurAnalogiqueMultiTrajet extends Transmetteur<Float, Float> {
 
 	/**
      * Méthode permettant d'émettre l'information emise (modifier au préalable par la methode recevoir)
-     * @throws InformationNonConforme : L'information n'est pas conforme
+     * @throws InformationNonConformeException : L'information n'est pas conforme
      *
     */
 	
@@ -112,12 +115,18 @@ public class RecepteurAnalogiqueMultiTrajet extends Transmetteur<Float, Float> {
 	}
 
 	
+	/**
+	 * 
+	 */
 	public void recyclerRAM() {
 		// TODO Auto-generated method stub
 		//informationRecue.vider();
 	}
 	
 	//Quelques methodes utiles pour connaitre les valeures min et max des listes 
+	/**
+	 * @return .
+	 */
 	private int tauMax() {
 		int max = tau.get(0);
 		
@@ -130,6 +139,9 @@ public class RecepteurAnalogiqueMultiTrajet extends Transmetteur<Float, Float> {
 		return max;
 	}
 
+	/**
+	 * @return .
+	 */
 	private int tauMin() {
 		int min = tau.get(0);
 		
@@ -142,6 +154,9 @@ public class RecepteurAnalogiqueMultiTrajet extends Transmetteur<Float, Float> {
 		return min;
 	}
 	
+	/**
+	 * @return .
+	 */
 	private float alphaMax() {
 		float max = alpha.get(0);
 		
@@ -154,6 +169,9 @@ public class RecepteurAnalogiqueMultiTrajet extends Transmetteur<Float, Float> {
 		return max;
 	}
 	
+	/**
+	 * @return .
+	 */
 	private float alphaMin() {
 		float min = alpha.get(0);
 		

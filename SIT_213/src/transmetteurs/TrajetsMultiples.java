@@ -9,6 +9,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+/**
+ * 
+ */
 public class TrajetsMultiples extends Transmetteur<Float, Float> {
 
     /**
@@ -16,6 +19,9 @@ public class TrajetsMultiples extends Transmetteur<Float, Float> {
      */
     private Map<Integer, Float> trajetMult;
 
+    /**
+     * 
+     */
     public TrajetsMultiples() {
         this.trajetMult = new HashMap<>();
     }
@@ -82,8 +88,8 @@ public class TrajetsMultiples extends Transmetteur<Float, Float> {
     /**
      * Fonction permettant de faire l'addition de deux listes
      *
-     * @param liste1
-     * @param liste2
+     * @param liste1 .
+     * @param liste2 .
      * @return combinaiseon des listes
      */
     private Information<Float> combinaison(Information<Float> liste1, Information<Float> liste2) {
@@ -101,7 +107,7 @@ public class TrajetsMultiples extends Transmetteur<Float, Float> {
      * Reception de l'information
      *
      * @param information l'information  à recevoir
-     * @throws InformationNonConformeException
+     * @throws InformationNonConformeException .
      */
     @Override
     public void recevoir(Information<Float> information) throws InformationNonConformeException {
@@ -122,7 +128,7 @@ public class TrajetsMultiples extends Transmetteur<Float, Float> {
     /**
      * Emmission des informations avec TM
      *
-     * @throws InformationNonConformeException
+     * @throws InformationNonConformeException .
      */
     @Override
     public void emettre() throws InformationNonConformeException {

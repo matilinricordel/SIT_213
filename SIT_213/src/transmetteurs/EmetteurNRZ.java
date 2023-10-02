@@ -3,29 +3,46 @@ package transmetteurs;
 import information.Information;
 import information.InformationNonConformeException;
 
+/**
+ * 
+ */
 public class EmetteurNRZ extends Emetteur{
 	/*
-	 * Instanciation des paramètres par défaut
+	 * Instanciation des parametres par defaut
 	 * 
 	 * @param
-	 * signalEchantillonne - information de float qui correspond au signal échantilloné
-	 * vmax - float qui correspond à la tension maximal du signal analogique
-	 * vmin - float qui correspond à la tension minimal du signal analogique
+	 * signalEchantillonne - information de float qui correspond au signal echantillone
+	 * vmax - float qui correspond e la tension maximal du signal analogique
+	 * vmin - float qui correspond e la tension minimal du signal analogique
 	 * 
 	 */
+    /**
+     * 
+     */
     Information<Float> signalEchantillonne;
+    /**
+     * 
+     */
     private float vmax;
+    /**
+     * 
+     */
     private float vmin;
 
     /*
-	 * Constructeur de l'émetteur NRZ
+	 * Constructeur de l'emetteur NRZ
 	 * 
 	 * @param
-	 * nbTechantillon - int qui correspond au nombre d'échantillon par bit
-	 * vmax - float qui correspond à la tension maximal du signal analogique
-	 * vmin - float qui correspond à la tension minimal du signal analogique
+	 * nbTechantillon - int qui correspond au nombre d'echantillon par bit
+	 * vmax - float qui correspond e la tension maximal du signal analogique
+	 * vmin - float qui correspond e la tension minimal du signal analogique
 	 * 
 	 */
+    /**
+     * @param vmax .
+     * @param vmin .
+     * @param nbTechantillon .
+     */
     public EmetteurNRZ(float vmax, float vmin, int nbTechantillon)
     {
         this.vmax = vmax;
@@ -34,13 +51,13 @@ public class EmetteurNRZ extends Emetteur{
     }
     
     /* 
-     * Initialise l'information reçue, la convertit et l'émet
+     * Initialise l'information reeue, la convertit et l'emet
      * 
      * @param
-     * information - information à recevoir qui contient des booléens
+     * information - information e recevoir qui contient des booleens
      * 
      * @exception 
-     * InformationNonConformeException - Vérifie que l'information est conforme
+     * InformationNonConformeException - Verifie que l'information est conforme
      * 
      */
     public void recevoir(Information<Boolean> information) throws InformationNonConformeException{
@@ -48,10 +65,10 @@ public class EmetteurNRZ extends Emetteur{
     }
 
     /* 
-     * Convertit l'information reçue en signal analogique NRZ
+     * Convertit l'information reeue en signal analogique NRZ
      * 
      * @exception 
-     * InformationNonConformeException - Vérifie que l'information est conforme
+     * InformationNonConformeException - Verifie que l'information est conforme
      * 
      */
     @Override
@@ -68,6 +85,10 @@ public class EmetteurNRZ extends Emetteur{
         informationEmise = signalEchantillonne;
     }
 
+    /**
+     * @param args .
+     * @throws InformationNonConformeException .
+     */
     public static void main(String[] args) throws InformationNonConformeException {
         Information<Boolean> test = new Information<Boolean>();
         test.add(true);

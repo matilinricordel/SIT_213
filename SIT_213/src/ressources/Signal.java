@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Random;
 
+/**
+ * 
+ */
 public class Signal {
 
     /**
@@ -15,6 +18,7 @@ public class Signal {
      * @param variance : variance du bruit blanc gaussien (Puissance = variance)
      * @param taille : nombre d'échantillon total
      * @return bruit blang gaussien
+     * @param random .
      */
     public static Information<Float> generationWhiteNoise(double variance, int taille, Random random){
         // Liste de valeurs du bruit blanc gaussien bbg
@@ -35,6 +39,10 @@ public class Signal {
         return bbg;
     }
 
+    /**
+     * @param bbg .
+     * @throws IOException .
+     */
     public static void writeNoiseToCsv(Information<Float> bbg) throws IOException {
         /*
     	FileWriter writer = new FileWriter("output/bruit_blanc.csv");
@@ -50,7 +58,7 @@ public class Signal {
 
     /**
      * Fonction qui calcule la puissance d'un signal à partir des échantilllons
-     * @param signal : liste  des échantillons d'un signal sous la forme de Information<Float>
+     * @param signal : liste  des échantillons d'un signal sous la forme de Information Float
      * @return puissance
      */
     public static double puissanceSignal(Information<Float> signal){
@@ -73,7 +81,7 @@ public class Signal {
      * @param signal1 : signal d'entré 1
      * @param signal2 : signal d'entré 1
      * @return addition des deux signal
-     * @throws LongueurDifferenteException
+     * @throws LongueurDifferenteException .
      */
     public static Information<Float> additionSignaux(Information<Float> signal1, Information<Float> signal2) throws LongueurDifferenteException{
         Information<Float> signalResultant = new Information<Float>();

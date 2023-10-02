@@ -39,6 +39,7 @@ public  class Information <T>  implements Iterable <T> {
     /**
      * pour renvoyer un élément d'une information
      * @return le ieme élément de l'information
+     * @param i .
      */
     public T iemeElement(int i) {
 	return this.content.get(i);
@@ -46,6 +47,10 @@ public  class Information <T>  implements Iterable <T> {
    
     /**
      * pour modifier le ième élément d'une information
+     */
+    /**
+     * @param i .
+     * @param v .
      */
     public void setIemeElement(int i, T v) {
 	this.content.set(i, v);

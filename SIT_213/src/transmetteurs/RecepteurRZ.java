@@ -6,18 +6,33 @@ import information.InformationNonConformeException;
 
 import java.util.Iterator;
 
+/**
+ * 
+ */
 public class RecepteurRZ extends Recepteur{
 
+    /**
+     * @param nbTechantillon .
+     * @param vmax .
+     */
     public RecepteurRZ(int nbTechantillon, float vmax) {
         super(nbTechantillon, vmax);
     }
     
+    /**
+     * @param nbTechantillon .
+     * @param vmax .
+     * @param vmin .
+     */
     public RecepteurRZ(int nbTechantillon, float vmax, float vmin) {
         super(nbTechantillon, vmax);
         this.vmin = vmin;
     }
     
  // Déconversion RZ
+    /**
+     *
+     */
     public void deconversion() {
     	/*System.out.println("nbech =" +nbTechantillon);
     	System.out.println("nbech/3 =" +nbTechantillon/3);
@@ -54,6 +69,10 @@ public class RecepteurRZ extends Recepteur{
         }
     }
 
+    /**
+     * @param args .
+     * @throws InformationNonConformeException .
+     */
     public static void main(String[] args) throws InformationNonConformeException {
         Information<Float> test = new Information<Float>();
         test.add(0f);
