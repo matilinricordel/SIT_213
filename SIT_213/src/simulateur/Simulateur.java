@@ -176,6 +176,7 @@ public class Simulateur {
 
 		// Liste des composants de la chaine de transmission
 		chaineTransmission.add(source);
+		if(codeurOn)chaineTransmission.add(new Codeur());
 		chaineTransmission.add(Emetteur);
 		if(type.equals("Logique")) chaineTransmission.add(transmetteurLogique);
 		if(!type.equals("Logique"))chaineTransmission.add(transmetteurAnalogique);
