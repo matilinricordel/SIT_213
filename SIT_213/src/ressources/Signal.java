@@ -49,7 +49,7 @@ public class Signal {
      * @throws IOException .
      */
     public static void writeNoiseToCsv(Information<Float> bbg) throws IOException {
-        
+        /*
     	FileWriter writer = new FileWriter("output/bruit_blanc.csv");
         Iterator<Float> valeursgauss = bbg.iterator();
         while(valeursgauss.hasNext())
@@ -58,6 +58,7 @@ public class Signal {
             writer.write(";\n");
         }
         writer.close();
+        */
         
     }
 

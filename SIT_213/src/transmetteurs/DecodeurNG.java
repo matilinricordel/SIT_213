@@ -1,4 +1,4 @@
-package destinations;
+package transmetteurs;
 
 import information.Information;
 import information.InformationNonConformeException;
@@ -6,7 +6,9 @@ import transmetteurs.Transmetteur;
 
 import java.util.Iterator;
 
-public class DecodeurNG extends Transmetteur<Boolean, Boolean> {
+import destinations.DestinationInterface;
+
+public class DecodeurNG extends Transmetteur<Boolean,Boolean> {
 
     /**
      * reception des informations
@@ -42,6 +44,7 @@ public class DecodeurNG extends Transmetteur<Boolean, Boolean> {
      * décodage des informations
      */
     private void analyze() {
+    	//System.out.println(informationEmise);
         this.informationEmise = new Information<>();
         Iterator<Boolean> iterator = informationRecue.iterator();
         boolean b1, b2, b3;

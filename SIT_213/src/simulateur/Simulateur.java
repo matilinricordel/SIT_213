@@ -1,6 +1,5 @@
 package simulateur;
-import destinations.Destination;
-import destinations.DestinationFinale;
+import destinations.*;
 import information.Information;
 import sources.Source;
 import sources.SourceAleatoire;
@@ -162,12 +161,15 @@ public class Simulateur {
 		if(affichage)
 		{
 			chaineSondes.add(new SondeLogique("Visualisation de la source (Sonde logique)",10));
+			if(codeurOn)chaineSondes.add(new SondeLogique("Visualisation du codeur (Sonde logique)",10));
 			chaineSondes.add(new SondeAnalogique("Visualisation de l'emetteur (Sonde analogique)"));
 			chaineSondes.add(new SondeAnalogique("Visualisation du transmetteur bruité(Sonde analogique)"));
 			if(trajetsMultiples!=null)chaineSondes.add(new SondeAnalogique("Visualisation du transmetteur avec trajets multiple(Sonde analogique)"));
 			//if(trajetsMultiples!=null)chaineSondes.add(new SondeAnalogique("Visualisation du Recepteur avec correction des trajets(Sonde analogique)"));
 			chaineSondes.add(new SondeLogique("Visualisation du recepteur (Sonde logique)",10));
+			if(codeurOn)chaineSondes.add(new SondeLogique("Visualisation du decodeur (Sonde logique)",10));
 			chaineSondes.add(new SondeLogique("Visualisation de la destination (Sonde logique)",10));
+			
 		}
 		
 
@@ -183,7 +185,9 @@ public class Simulateur {
 		if(trajetsMultiples!=null)chaineTransmission.add(trajetsMultiples);
 		//if(trajetsMultiples!=null)chaineTransmission.add(recepteurMultiTrajet);
 		chaineTransmission.add(Recepteur);
+		if(codeurOn)chaineTransmission.add(new DecodeurNG());
 		chaineTransmission.add(destination);
+		
 
 		// Connexion des composants de la chaine de transmission
 		try{
