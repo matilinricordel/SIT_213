@@ -1,4 +1,4 @@
 #!/bin/bash
 
 bash clean.sh
-tar zcvf  Degeorges-Lassalle-Kasimi-Ricordel-Mauny.tar.gz *
+tar zcvf  B2.Degeorges.Lassalle.Kasimi.Ricordel.Mauny.etape5.tar.gz *
