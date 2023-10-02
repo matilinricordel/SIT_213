@@ -81,6 +81,11 @@ public class Simulateur {
      * 
      */
    	private RecepteurAnalogiqueMultiTrajet recepteurMultiTrajet = null;
+   	
+   	/**
+     * Indique si le simulateur doit utiliser le codeur ou non
+     */
+    private boolean codeurOn = false;
    
     /** Le constructeur de Simulateur construit une chaîne de
      * transmission composée d'une Source <Boolean>, d'une Destination
@@ -385,6 +390,9 @@ public class Simulateur {
                     
                     
                     
+                    
+                    
+                    
                     i = j;
                 }
                 
@@ -396,6 +404,13 @@ public class Simulateur {
 					e.printStackTrace();
 				}
 			}
+    		
+    		
+			else if (args[i].matches("-codeur")) {
+                //i++;
+                codeurOn = true;
+
+            }
     		
     		//TODO : ajouter ci-après le traitement des nouvelles options
 
