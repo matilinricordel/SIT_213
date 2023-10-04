@@ -2,6 +2,7 @@ package transmetteurs;
 
 import information.Information;
 
+import java.util.*;
 import java.util.Iterator;
 import java.util.Random;
 
@@ -23,8 +24,15 @@ public class TransmetteurBruit extends TransmetteurAnalogique{
      * 
      */
     protected Random random;
+    
+    
+    protected float snrReel;
 
-
+    protected float puissanceBruitMoyen;
+    
+    protected float puissanceMoyenneSignal;
+    
+    protected LinkedList<Float> bruitEmis = new LinkedList<Float>();
     /**
      * @param nbTechantillon .
      * @param rsbEndB .
@@ -48,6 +56,27 @@ public class TransmetteurBruit extends TransmetteurAnalogique{
         this.rsb = rsbEndB;
         this.random = new Random(seed);
     }
+    
+    private void calculerPuissanceDeBruitMoyen() {
+    	float somme = 0;
+    	for (float i : this.bruitEmis)
+    		somme+= Math.pow(i, 2);
+    	this.puissanceBruitMoyen() = (float) somme / (float) this.bruitEmis.size();
+    }
+    private void calculerPuissanceMoyenneSignal() {
+        float somme = 0;
+        for (float i : this.informationRecue)
+            somme += Math.pow(i, 2);
+        this.puissanceMoyenneSignal = (float) somme / this.informationRecue.nbElements();
+    }
+    public void calculerSNRreel() {
+    	
+    	this.snrReel = 10 * (float) Math.log10(
+    			(this.puissanceMoyenneSignal * nbTechantillon) / (2*this.puissanceBruitMoyen));
+    			
+    	
+    }
+    
 
     /**
      *
