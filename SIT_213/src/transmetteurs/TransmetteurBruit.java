@@ -27,6 +27,8 @@ public class TransmetteurBruit extends TransmetteurAnalogique{
     
     
     protected float snrReel;
+    
+    protected double variance;
 
     protected float puissanceBruitMoyen;
     
@@ -76,6 +78,10 @@ public class TransmetteurBruit extends TransmetteurAnalogique{
     			
     	
     }
+    private void calculerVariance() {
+        calculerPuissanceMoyenneSignal();
+        this.variance = (this.puissanceMoyenneSignal * nbTechantillon) / (2 * (float) Math.pow(10, rsb / 10));
+    }
     
 
     /**
@@ -84,13 +90,14 @@ public class TransmetteurBruit extends TransmetteurAnalogique{
     @Override
     public void traitementduSignal() {
         // Puissance = variance
-        double variance;
+        
         //System.out.println("rsb = "+rsb);
         //rsb = Math.pow(10, rsb/10);
         //System.out.println(puissanceSignal(informationRecue));
         // EX // variance = ((puissanceSignal(informationRecue)))*(1/rsb);
         System.out.println("puissance signal = "+puissanceSignal(informationRecue));
-        variance = ((puissanceSignal(informationRecue)))/Math.pow(10, rsb/10);
+        //variance = ((puissanceSignal(informationRecue)))/Math.pow(10, rsb/10);
+        calculerVariance();
         System.out.println("rsb = "+rsb);
         //System.out.println("10^rsb/10 = "+Math.pow(10, rsb/10));
         System.out.println("variance = "+variance);
