@@ -3,6 +3,7 @@ package transmetteurs;
 import information.Information;
 import ressources.Signal;
 
+import java.util.*;
 import java.util.Iterator;
 import java.util.Random;
 
@@ -24,8 +25,17 @@ public class TransmetteurBruit extends TransmetteurAnalogique{
      * 
      */
     protected Random random;
+    
+    
+    protected float snrReel;
+    
+    protected double variance;
 
-
+    protected float puissanceBruitMoyen;
+    
+    protected float puissanceMoyenneSignal;
+    
+    protected LinkedList<Float> bruitEmis = new LinkedList<Float>();
     /**
      * @param nbTechantillon .
      * @param rsbEndB .
@@ -49,6 +59,31 @@ public class TransmetteurBruit extends TransmetteurAnalogique{
         this.rsb = rsbEndB;
         this.random = new Random(seed);
     }
+    
+    private void calculerPuissanceDeBruitMoyen() {
+    	float somme = 0;
+    	for (float i : this.bruitEmis)
+    		somme+= Math.pow(i, 2);
+    	this.puissanceBruitMoyen() = (float) somme / (float) this.bruitEmis.size();
+    }
+    private void calculerPuissanceMoyenneSignal() {
+        float somme = 0;
+        for (float i : this.informationRecue)
+            somme += Math.pow(i, 2);
+        this.puissanceMoyenneSignal = (float) somme / this.informationRecue.nbElements();
+    }
+    public void calculerSNRreel() {
+    	
+    	this.snrReel = 10 * (float) Math.log10(
+    			(this.puissanceMoyenneSignal * nbTechantillon) / (2*this.puissanceBruitMoyen));
+    			
+    	
+    }
+    private void calculerVariance() {
+        calculerPuissanceMoyenneSignal();
+        this.variance = (this.puissanceMoyenneSignal * nbTechantillon) / (2 * (float) Math.pow(10, rsb / 10));
+    }
+    
 
     /**
      *
@@ -56,11 +91,14 @@ public class TransmetteurBruit extends TransmetteurAnalogique{
     @Override
     public void traitementduSignal() {
         // Puissance = variance
-        double variance;
+        
         //System.out.println("rsb = "+rsb);
         //rsb = Math.pow(10, rsb/10);
         //System.out.println(puissanceSignal(informationRecue));
         // EX // variance = ((puissanceSignal(informationRecue)))*(1/rsb);
+        //variance = ((puissanceSignal(informationRecue)))/Math.pow(10, rsb/10);
+        calculerVariance();
+        System.out.println("rsb = "+rsb);
         //System.out.println("puissance signal = "+puissanceSignal(informationRecue));
         variance = ((puissanceSignal(informationRecue)))/Math.pow(10, rsb/10);
         //System.out.println("rsb = "+rsb);
