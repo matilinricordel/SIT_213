@@ -136,7 +136,9 @@ public class TrajetsMultiples extends Transmetteur<Float, Float> {
             throw new InformationNonConformeException("Message de taille inférieure à 6 bits");
         }
         for (DestinationInterface<Float> destinationConnectee : this.destinationsConnectees) {
+        	//System.out.println("emission vers "+ destinationConnectee);
             destinationConnectee.recevoir(informationEmise);
+            //System.out.println("ok");
         }
     }
 }

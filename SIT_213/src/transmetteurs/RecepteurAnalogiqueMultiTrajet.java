@@ -54,50 +54,53 @@ public class RecepteurAnalogiqueMultiTrajet extends Transmetteur<Float, Float> {
 	@Override
 	public void recevoir(Information<Float> information)
 			throws InformationNonConformeException {
-		// TODO Auto-generated method stub 
-		if(information == null || information.nbElements() == 0) {
-			throw new InformationNonConformeException();
-
-		}
+			// TODO Auto-generated method stub 
+			if(information == null || information.nbElements() == 0) {
+				throw new InformationNonConformeException();
+	
+			}
+			
+			//int nbEch = information.nbElements() - tauMax(); //Calcul du nombre d'échantillons utiles
+			int nbEch = information.nbElements();
+			informationRecue = information;
+			informationEmise = new Information <Float>();
+	
+	
+			Information<Float> infoTemp = new Information<Float>();
+			
+			
+			//copie des info recus
+			for(float val : informationRecue) {
+				infoTemp.add(val);
+			}
 		
-		int nbEch = information.nbElements() - tauMax(); //Calcul du nombre d'échantillons utiles
-		informationRecue = information;
-		informationEmise = new Information <Float>();
-
-
-		Information<Float> infoTemp = new Information<Float>();
-		
-		
-		
-		for(float val : informationRecue) {
-			infoTemp.add(val);
-		}
-		
-		for (int i = 0; i < nbEch; i++) //parcours des échantillons significatifs
-		{
-			float temp = infoTemp.iemeElement(i);
-			for (int j = 0; j < tau.size(); j++)
+			for (int i = 0; i < nbEch; i++) //parcours des échantillons significatifs
 			{
-				int delta = tau.get(j);
-				if (i>= delta)
+				float temp = infoTemp.iemeElement(i);
+				for (int j = 0; j < tau.size(); j++)
 				{
-					temp -= alpha.get(j)*infoTemp.iemeElement(i-delta); //Si superposition de plusieurs trajets, on soustrait les multitrajets
-					
+					int delta = tau.get(j);
+					if (i>= delta)
+					{
+						temp -= alpha.get(j)*infoTemp.iemeElement(i-delta); //Si superposition de plusieurs trajets, on soustrait les multitrajets
+						
+					}
 				}
+				infoTemp.setIemeElement(i, temp); //Valeur "nettoyée" des multi trajets
 			}
-			infoTemp.setIemeElement(i, temp); //Valeur "nettoyée" des multi trajets
+		
+		
+			for(int k = 0; k < nbEch; k++)
+			{
+				informationEmise.add(infoTemp.iemeElement(k)); // Construction de l'info émise
+			}
+				
+			// On libère l'information temporaire (utile ou pas ?)
+			//infoTemp.vider();
+			//System.out.println("recu ="+informationRecue);
+			//System.out.println("emise = "+informationEmise);
+			this.emettre();
 		}
-		
-		
-				for(int k = 0; k < nbEch; k++)
-				{
-					informationEmise.add(infoTemp.iemeElement(k)); // Construction de l'info émise
-				}
-				
-				// On libère l'information temporaire (utile ou pas ?)
-				//infoTemp.vider();
-				
-			}
 
 	/**
      * Méthode permettant d'émettre l'information emise (modifier au préalable par la methode recevoir)
@@ -108,7 +111,7 @@ public class RecepteurAnalogiqueMultiTrajet extends Transmetteur<Float, Float> {
 	@Override
 	public void emettre() throws InformationNonConformeException {
 		// TODO Auto-generated method stub
-
+		System.out.println("envoi en cours");
 		for (DestinationInterface<Float> destinationConnectee : destinationsConnectees) {
 			destinationConnectee.recevoir(informationEmise);
 		}

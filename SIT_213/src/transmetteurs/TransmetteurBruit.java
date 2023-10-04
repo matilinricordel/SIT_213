@@ -60,17 +60,17 @@ public class TransmetteurBruit extends TransmetteurAnalogique{
         //rsb = Math.pow(10, rsb/10);
         //System.out.println(puissanceSignal(informationRecue));
         // EX // variance = ((puissanceSignal(informationRecue)))*(1/rsb);
-        System.out.println("puissance signal = "+puissanceSignal(informationRecue));
+        //System.out.println("puissance signal = "+puissanceSignal(informationRecue));
         variance = ((puissanceSignal(informationRecue)))/Math.pow(10, rsb/10);
-        System.out.println("rsb = "+rsb);
+        //System.out.println("rsb = "+rsb);
         //System.out.println("10^rsb/10 = "+Math.pow(10, rsb/10));
-        System.out.println("variance = "+variance);
+        //System.out.println("variance = "+variance);
         //System.out.println("variance  = " + variance);
         Information<Float> bruit = new Information<Float>();
         bruit = generationWhiteNoise(variance, informationRecue.nbElements(), random);
-        //System.out.println("puissance sig = "+ puissanceSignal(informationRecue));
-        //System.out.println("puissance noise = "+puissanceSignal(bruit));
-        //System.out.println("rsb = "+ puissanceSignal(informationRecue)/puissanceSignal(bruit));
+        System.out.println("puissance sig = "+ puissanceSignal(informationRecue));
+        System.out.println("puissance noise = "+puissanceSignal(bruit));
+        System.out.println("rsb = "+ puissanceSignal(informationRecue)/puissanceSignal(bruit));
         try {
         	//System.out.println("ajout de bruit" + bruit);
             informationTraite=additionSignaux(bruit, informationRecue);

@@ -38,7 +38,7 @@ public class Signal {
             e.printStackTrace();
         }
         //System.out.println(bbg);
-        System.out.println("puissance bbg = "+puissanceSignal(bbg));
+        //System.out.println("puissance bbg = "+puissanceSignal(bbg));
         
         
         return bbg;
