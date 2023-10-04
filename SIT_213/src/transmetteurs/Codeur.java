@@ -6,6 +6,9 @@ import information.InformationNonConformeException;
 import simulateur.Simulateur;
 import transmetteurs.Transmetteur;
 
+/**
+ * 
+ */
 public class Codeur extends Transmetteur<Boolean, Boolean> {
 
     /**
@@ -19,7 +22,7 @@ public class Codeur extends Transmetteur<Boolean, Boolean> {
      * Reception de l'information emise
      *
      * @param information l'information  à recevoir
-     * @throws InformationNonConformeException
+     * @throws InformationNonConformeException .
      */
     public void recevoir(Information<Boolean> information) throws InformationNonConformeException {
         this.informationRecue = information;
@@ -50,7 +53,7 @@ public class Codeur extends Transmetteur<Boolean, Boolean> {
     /**
      * Emission de la trame vers le bloc suivant
      *
-     * @throws InformationNonConformeException
+     * @throws InformationNonConformeException .
      */
     public void emettre() throws InformationNonConformeException {
         this.informationEmise = new Information<>();

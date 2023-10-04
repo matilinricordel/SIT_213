@@ -8,13 +8,16 @@ import java.util.Iterator;
 
 import destinations.DestinationInterface;
 
+/**
+ * 
+ */
 public class DecodeurNG extends Transmetteur<Boolean,Boolean> {
 
     /**
      * reception des informations
      * 
      * @param information l'information  à recevoir
-     * @throws InformationNonConformeException
+     * @throws InformationNonConformeException .
      */
     @Override
     public void recevoir(Information<Boolean> information) throws InformationNonConformeException {
@@ -26,7 +29,7 @@ public class DecodeurNG extends Transmetteur<Boolean,Boolean> {
     /**
      * émission des informations
      *
-     * @throws InformationNonConformeException
+     * @throws InformationNonConformeException .
      */
     @Override
     public void emettre() throws InformationNonConformeException {
