@@ -97,6 +97,7 @@ public class TransmetteurBruit extends TransmetteurAnalogique{
         // EX // variance = ((puissanceSignal(informationRecue)))*(1/rsb);
         //variance = ((puissanceSignal(informationRecue)))/Math.pow(10, rsb/10);
         calculerVariance();
+        calculerPuissanceDeBruitMoyen();
         System.out.println("rsb = "+rsb);
         //System.out.println("puissance signal = "+puissanceSignal(informationRecue));
         variance = ((puissanceSignal(informationRecue)))/Math.pow(10, rsb/10);
