@@ -83,7 +83,7 @@ public class Simulateur {
    	/**
      * Indique si le simulateur doit utiliser le codeur ou non
      */
-    private boolean codeurOn = false;
+    private boolean codeurOn = false;//false
    
     /** Le constructeur de Simulateur construit une chaîne de
      * transmission composée d'une Source Boolean, d'une Destination
@@ -164,8 +164,12 @@ public class Simulateur {
 			if(codeurOn)chaineSondes.add(new SondeLogique("Visualisation du codeur (Sonde logique)",10));
 			chaineSondes.add(new SondeAnalogique("Visualisation de l'emetteur (Sonde analogique)"));
 			chaineSondes.add(new SondeAnalogique("Visualisation du transmetteur bruité(Sonde analogique)"));
-			if(trajetsMultiples!=null)chaineSondes.add(new SondeAnalogique("Visualisation du transmetteur avec trajets multiple(Sonde analogique)"));
-			//if(trajetsMultiples!=null)chaineSondes.add(new SondeAnalogique("Visualisation du Recepteur avec correction des trajets(Sonde analogique)"));
+			
+			if(trajetsMultiples!=null) {
+				chaineSondes.add(new SondeAnalogique("Visualisation du transmetteur avec trajets multiple(Sonde analogique)"));
+				chaineSondes.add(new SondeAnalogique("Visualisation du Recepteur avec correction des trajets(Sonde analogique)"));
+			}
+			
 			chaineSondes.add(new SondeLogique("Visualisation du recepteur (Sonde logique)",10));
 			if(codeurOn)chaineSondes.add(new SondeLogique("Visualisation du decodeur (Sonde logique)",10));
 			chaineSondes.add(new SondeLogique("Visualisation de la destination (Sonde logique)",10));
@@ -182,11 +186,15 @@ public class Simulateur {
 		chaineTransmission.add(Emetteur);
 		if(type.equals("Logique")) chaineTransmission.add(transmetteurLogique);
 		if(!type.equals("Logique"))chaineTransmission.add(transmetteurAnalogique);
-		if(trajetsMultiples!=null)chaineTransmission.add(trajetsMultiples);
-		//if(trajetsMultiples!=null)chaineTransmission.add(recepteurMultiTrajet);
+		if(trajetsMultiples!=null) {
+			chaineTransmission.add(trajetsMultiples);
+			chaineTransmission.add(recepteurMultiTrajet);
+		}
 		chaineTransmission.add(Recepteur);
+		
 		if(codeurOn)chaineTransmission.add(new DecodeurNG());
 		chaineTransmission.add(destination);
+		//System.out.println(chaineTransmission);
 		
 
 		// Connexion des composants de la chaine de transmission
@@ -223,6 +231,7 @@ public class Simulateur {
 						}
 						break;
 					case"transmetteurs":
+						//System.out.println("connexion ");
 						Transmetteur trs1 = (Transmetteur) chaineTransmission.get(i);
 						switch(chaineTransmission.get(i+1).getClass().getPackageName()) {
 							case"transmetteurs":
@@ -389,19 +398,13 @@ public class Simulateur {
                         throw new ArgumentsException("L'amplitude relative ne peut être inférieur à 0 ou supérieur à 1.");
 
                     trajetsMultiples.addTrajetMultiple(dt, ar);
-
-                    
-                    
-                    
-                    
-                    
-                    
-                    
+                    //System.out.println(tabar);
+                    //System.out.println(tabdt);
                     i = j;
                 }
                 
                 try {
-                	
+                	//System.out.println("recepteur mutli ok");
 					recepteurMultiTrajet = new RecepteurAnalogiqueMultiTrajet(tabdt, tabar);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
