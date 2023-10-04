@@ -1,9 +1,7 @@
 package transmetteurs;
 
 import information.Information;
-import ressources.Signal;
 
-import java.util.*;
 import java.util.Iterator;
 import java.util.Random;
 
@@ -25,17 +23,8 @@ public class TransmetteurBruit extends TransmetteurAnalogique{
      * 
      */
     protected Random random;
-    
-    
-    protected float snrReel;
-    
-    protected double variance;
 
-    protected float puissanceBruitMoyen;
-    
-    protected float puissanceMoyenneSignal;
-    
-    protected LinkedList<Float> bruitEmis = new LinkedList<Float>();
+
     /**
      * @param nbTechantillon .
      * @param rsbEndB .
@@ -59,31 +48,6 @@ public class TransmetteurBruit extends TransmetteurAnalogique{
         this.rsb = rsbEndB;
         this.random = new Random(seed);
     }
-    
-    private void calculerPuissanceDeBruitMoyen() {
-    	float somme = 0;
-    	for (float i : this.bruitEmis)
-    		somme+= Math.pow(i, 2);
-    	this.puissanceBruitMoyen() = (float) somme / (float) this.bruitEmis.size();
-    }
-    private void calculerPuissanceMoyenneSignal() {
-        float somme = 0;
-        for (float i : this.informationRecue)
-            somme += Math.pow(i, 2);
-        this.puissanceMoyenneSignal = (float) somme / this.informationRecue.nbElements();
-    }
-    public void calculerSNRreel() {
-    	
-    	this.snrReel = 10 * (float) Math.log10(
-    			(this.puissanceMoyenneSignal * nbTechantillon) / (2*this.puissanceBruitMoyen));
-    			
-    	
-    }
-    private void calculerVariance() {
-        calculerPuissanceMoyenneSignal();
-        this.variance = (this.puissanceMoyenneSignal * nbTechantillon) / (2 * (float) Math.pow(10, rsb / 10));
-    }
-    
 
     /**
      *
@@ -91,27 +55,31 @@ public class TransmetteurBruit extends TransmetteurAnalogique{
     @Override
     public void traitementduSignal() {
         // Puissance = variance
-        
+        double variance;
         //System.out.println("rsb = "+rsb);
         //rsb = Math.pow(10, rsb/10);
         //System.out.println(puissanceSignal(informationRecue));
         // EX // variance = ((puissanceSignal(informationRecue)))*(1/rsb);
-        //variance = ((puissanceSignal(informationRecue)))/Math.pow(10, rsb/10);
-        calculerVariance();
-        calculerPuissanceDeBruitMoyen();
-        System.out.println("rsb = "+rsb);
         //System.out.println("puissance signal = "+puissanceSignal(informationRecue));
-        variance = ((puissanceSignal(informationRecue)))/Math.pow(10, rsb/10);
-        //System.out.println("rsb = "+rsb);
+        
+        float Eb = (float) (puissanceSignal(informationRecue)*(informationRecue.nbElements()));
+        float No = (float) (Eb / Math.pow(10, rsb/10));
+        
+        variance = No * informationRecue.nbElements();
+        
+        //variance = ((puissanceSignal(informationRecue)))/Math.pow(10, rsb/10);
+        
+        
+        
+        System.out.println("rsb = "+rsb);
         //System.out.println("10^rsb/10 = "+Math.pow(10, rsb/10));
-        //System.out.println("variance = "+variance);
+        System.out.println("variance = "+variance);
         //System.out.println("variance  = " + variance);
         Information<Float> bruit = new Information<Float>();
         bruit = generationWhiteNoise(variance, informationRecue.nbElements(), random);
-        System.out.println("puissance sig = "+ puissanceSignal(informationRecue));
-        System.out.println("puissance noise = "+puissanceSignal(bruit));
-        System.out.println("rsb = "+ puissanceSignal(informationRecue)/puissanceSignal(bruit));
-        System.out.println("Eb/No = "+ puissanceSignal(informationRecue)/informationRecue.nbElements() / puissanceSignal(bruit)/informationRecue.nbElements());
+        //System.out.println("puissance sig = "+ puissanceSignal(informationRecue));
+        //System.out.println("puissance noise = "+puissanceSignal(bruit));
+        //System.out.println("rsb = "+ puissanceSignal(informationRecue)/puissanceSignal(bruit));
         try {
         	//System.out.println("ajout de bruit" + bruit);
             informationTraite=additionSignaux(bruit, informationRecue);
