@@ -1,6 +1,7 @@
 package transmetteurs;
 
 import information.Information;
+import ressources.Signal;
 
 import java.util.Iterator;
 import java.util.Random;
@@ -71,6 +72,7 @@ public class TransmetteurBruit extends TransmetteurAnalogique{
         System.out.println("puissance sig = "+ puissanceSignal(informationRecue));
         System.out.println("puissance noise = "+puissanceSignal(bruit));
         System.out.println("rsb = "+ puissanceSignal(informationRecue)/puissanceSignal(bruit));
+        System.out.println("Eb/No = "+ puissanceSignal(informationRecue)/informationRecue.nbElements() / puissanceSignal(bruit)/informationRecue.nbElements());
         try {
         	//System.out.println("ajout de bruit" + bruit);
             informationTraite=additionSignaux(bruit, informationRecue);
