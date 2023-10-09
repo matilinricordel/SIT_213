@@ -57,13 +57,14 @@ public class TransmetteurBruit extends TransmetteurAnalogique{
         //this.rsb = Math.pow(10, (rsbEndB/10));
         this.rsb = rsbEndB;
         this.random = new Random(seed);
+        
     }
     
     private void calculerPuissanceDeBruitMoyen() {
     	float somme = 0;
     	for (float i : this.bruitEmis)
     		somme+= Math.pow(i, 2);
-    	this.puissanceBruitMoyen() = (float) somme / (float) this.bruitEmis.size();
+    	this.puissanceBruitMoyen = (float) somme / (float) this.bruitEmis.size();
     }
     private void calculerPuissanceMoyenneSignal() {
         float somme = 0;
@@ -110,6 +111,8 @@ public class TransmetteurBruit extends TransmetteurAnalogique{
         System.out.println("puissance sig = "+ puissanceSignal(informationRecue));
         System.out.println("puissance noise = "+puissanceSignal(bruit));
         System.out.println("rsb = "+ puissanceSignal(informationRecue)/puissanceSignal(bruit));
+        
+        System.out.println("SNR = "+rsb+ "SNR reel : "+Math.pow(10, snrReel/10));
         try {
         	//System.out.println("ajout de bruit" + bruit);
             informationTraite=additionSignaux(bruit, informationRecue);
