@@ -23,7 +23,7 @@ import java.util.Iterator;
  */
 public class Simulateur {
       	
-	private Boolean rOne = false;
+	private Boolean rOne = true;
     /** indique si le Simulateur utilise des sondes d'affichage */
     private boolean affichage = false;
 
