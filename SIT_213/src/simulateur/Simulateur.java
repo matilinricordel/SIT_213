@@ -143,8 +143,8 @@ public class Simulateur {
 		if(type.equals("Analogique")) {
 			transmetteurAnalogique= new TransmetteurParfait<Float,Float>();
 			if(snrt != null) {
-				if (aleatoireAvecGerme) {transmetteurAnalogique= new TransmetteurBruit(nombreEchantillon, snrt, seed);}
-				else {transmetteurAnalogique= new TransmetteurBruit(nombreEchantillon, snrt);}
+				if (aleatoireAvecGerme) {transmetteurAnalogique= new TransmetteurGaussien(snrt, nombreEchantillon,seed); /*new TransmetteurBruit(nombreEchantillon, snrt, seed);*/}
+				else {transmetteurAnalogique= new TransmetteurGaussien(snrt, nombreEchantillon); /* new TransmetteurBruit(nombreEchantillon, snrt);*/}
 			}
 			else {transmetteurAnalogique= new TransmetteurParfait<Float,Float>();}
 			transmetteurLogique=null;
