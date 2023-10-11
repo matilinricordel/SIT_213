@@ -23,6 +23,7 @@ import java.util.Iterator;
  */
 public class Simulateur {
       	
+	private Boolean rOne = false;
     /** indique si le Simulateur utilise des sondes d'affichage */
     private boolean affichage = false;
 
@@ -78,7 +79,7 @@ public class Simulateur {
     /**
      * 
      */
-   	private RecepteurAnalogiqueMultiTrajet recepteurMultiTrajet = null;
+   	private Transmetteur recepteurMultiTrajet = null;
    	
    	/**
      * Indique si le simulateur doit utiliser le codeur ou non
@@ -160,19 +161,20 @@ public class Simulateur {
 
 		if(affichage)
 		{
-			chaineSondes.add(new SondeLogique("Visualisation de la source (Sonde logique)",10));
-			if(codeurOn)chaineSondes.add(new SondeLogique("Visualisation du codeur (Sonde logique)",10));
-			chaineSondes.add(new SondeAnalogique("Visualisation de l'emetteur (Sonde analogique)"));
-			chaineSondes.add(new SondeAnalogique("Visualisation du transmetteur bruité(Sonde analogique)"));
+			chaineSondes.add(new SondeLogique("source (Sonde logique)",10));
+			if(codeurOn)chaineSondes.add(new SondeLogique(" codeur (Sonde logique)",10));
+			chaineSondes.add(new SondeAnalogique("emetteur (Sonde analogique)"));
+			chaineSondes.add(new SondeAnalogique("transmetteur bruité(Sonde analogique)"));
 			
 			if(trajetsMultiples!=null) {
-				chaineSondes.add(new SondeAnalogique("Visualisation du transmetteur avec trajets multiple(Sonde analogique)"));
-				chaineSondes.add(new SondeAnalogique("Visualisation du Recepteur avec correction des trajets(Sonde analogique)"));
+				chaineSondes.add(new SondeAnalogique("transmetteur avec trajets multiple(Sonde analogique)"));
+				if(!rOne)chaineSondes.add(new SondeAnalogique("Recepteur avec correction des trajets(Sonde analogique)"));
+				
 			}
 			
-			chaineSondes.add(new SondeLogique("Visualisation du recepteur (Sonde logique)",10));
-			if(codeurOn)chaineSondes.add(new SondeLogique("Visualisation du decodeur (Sonde logique)",10));
-			chaineSondes.add(new SondeLogique("Visualisation de la destination (Sonde logique)",10));
+			chaineSondes.add(new SondeLogique(" recepteur (Sonde logique)",10));
+			if(codeurOn)chaineSondes.add(new SondeLogique(" decodeur (Sonde logique)",10));
+			chaineSondes.add(new SondeLogique("destination (Sonde logique)",10));
 			
 		}
 		
@@ -190,7 +192,8 @@ public class Simulateur {
 			chaineTransmission.add(trajetsMultiples);
 			chaineTransmission.add(recepteurMultiTrajet);
 		}
-		chaineTransmission.add(Recepteur);
+		/*if(trajetsMultiples==null)*/
+			if(!rOne)chaineTransmission.add(Recepteur);
 		
 		if(codeurOn)chaineTransmission.add(new DecodeurNG());
 		chaineTransmission.add(destination);
@@ -362,7 +365,9 @@ public class Simulateur {
 				}
 
 			}
-    		
+			else if (args[i].matches("-rOne")) {
+				rOne = true;
+			}
     		
 			else if (args[i].matches("-ti")) {
                 if ((args.length - i) < 2) {
@@ -406,6 +411,7 @@ public class Simulateur {
                 try {
                 	//System.out.println("recepteur mutli ok");
 					recepteurMultiTrajet = new RecepteurAnalogiqueMultiTrajet(tabdt, tabar);
+					if(rOne)recepteurMultiTrajet = new RecepteurMultiTrajet2(vmax, vmin, type , nombreEchantillon);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

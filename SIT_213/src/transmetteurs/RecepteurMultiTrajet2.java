@@ -6,7 +6,7 @@ import destinations.DestinationInterface;
 import information.Information;
 import information.InformationNonConformeException;
 
-public class RecepteurMultiTrajet2 extends Transmetteur<Float, Boolean> {
+public class RecepteurMultiTrajet2 extends Transmetteur<Float, Boolean	> {
 	
 	//private float coefficientFiltre=1.f;
 	protected float amplitudeMax=1.0f;	// Amplitude maximale du signal
@@ -42,8 +42,9 @@ public class RecepteurMultiTrajet2 extends Transmetteur<Float, Boolean> {
         for (DestinationInterface<Boolean> destinationInterface : destinationsConnectees) {
             destinationInterface.recevoir(informationEmise);
         }
-}
+	}
     
+	
     public void recevoirInformationBase(Information<Float> information) throws InformationNonConformeException{
     	this.informationBase=new Information<Float>();
     	for(Float f : information) {
@@ -289,5 +290,3 @@ public class RecepteurMultiTrajet2 extends Transmetteur<Float, Boolean> {
 		
 		
 	}
-
-}
