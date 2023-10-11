@@ -137,8 +137,11 @@ public class TransmetteurGaussien extends Transmetteur<Float, Float> {
      * signal et de la puissance du bruit généré (méthode utilisée pour les tests)
      */
     private void calculerSNRreel() {
+    	calculerPuissanceDeBruitMoyen();
+    	calculerPuissanceMoyenneSignal();
         this.snrReel = 10 * (float) Math.log10(
                 (this.puissanceMoyenneSignal * nbEch) / (2 * this.puissanceBruitMoyen));
+        //System.out.println("Eb/No = "+ snrReel);
     }
 
     /**
@@ -155,6 +158,8 @@ public class TransmetteurGaussien extends Transmetteur<Float, Float> {
      * des composants connectés à sa sortie.
      */
     public void emettre() throws InformationNonConformeException {
+    	//calculerSNRreel();
+    	
         if (this.informationRecue == null)
             throw new InformationNonConformeException("Erreur : Information non conforme");
         genererSignalBruite();
