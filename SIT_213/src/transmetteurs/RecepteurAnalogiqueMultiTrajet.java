@@ -111,7 +111,7 @@ public class RecepteurAnalogiqueMultiTrajet extends Transmetteur<Float, Float> {
 	@Override
 	public void emettre() throws InformationNonConformeException {
 		// TODO Auto-generated method stub
-		System.out.println("envoi en cours");
+		//System.out.println("envoi en cours");
 		for (DestinationInterface<Float> destinationConnectee : destinationsConnectees) {
 			destinationConnectee.recevoir(informationEmise);
 		}

@@ -23,7 +23,7 @@ import java.util.Iterator;
  */
 public class Simulateur {
       	
-	private Boolean rOne = true;
+	private Boolean r2 = true;
     /** indique si le Simulateur utilise des sondes d'affichage */
     private boolean affichage = false;
 
@@ -168,7 +168,7 @@ public class Simulateur {
 			
 			if(trajetsMultiples!=null) {
 				chaineSondes.add(new SondeAnalogique("transmetteur avec trajets multiple(Sonde analogique)"));
-				if(!rOne)chaineSondes.add(new SondeAnalogique("Recepteur avec correction des trajets(Sonde analogique)"));
+				if(!r2)chaineSondes.add(new SondeAnalogique("Recepteur avec correction des trajets(Sonde analogique)"));
 				
 			}
 			
@@ -193,7 +193,7 @@ public class Simulateur {
 			chaineTransmission.add(recepteurMultiTrajet);
 		}
 		/*if(trajetsMultiples==null)*/
-			if(!rOne)chaineTransmission.add(Recepteur);
+			if(!r2)chaineTransmission.add(Recepteur);
 		
 		if(codeurOn)chaineTransmission.add(new DecodeurNG());
 		chaineTransmission.add(destination);
@@ -365,8 +365,8 @@ public class Simulateur {
 				}
 
 			}
-			else if (args[i].matches("-rOne")) {
-				rOne = true;
+			else if (args[i].matches("-r2")) {
+				r2 = false;
 			}
     		
 			else if (args[i].matches("-ti")) {
@@ -411,7 +411,7 @@ public class Simulateur {
                 try {
                 	//System.out.println("recepteur mutli ok");
 					recepteurMultiTrajet = new RecepteurAnalogiqueMultiTrajet(tabdt, tabar);
-					if(rOne)recepteurMultiTrajet = new RecepteurMultiTrajet2(vmax, vmin, type , nombreEchantillon);
+					if(r2)recepteurMultiTrajet = new RecepteurMultiTrajet2(vmax, vmin, type , nombreEchantillon);
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
