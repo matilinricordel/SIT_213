@@ -412,6 +412,7 @@ public class Simulateur {
                 	//System.out.println("recepteur mutli ok");
 					recepteurMultiTrajet = new RecepteurAnalogiqueMultiTrajet(tabdt, tabar);
 					if(r2)recepteurMultiTrajet = new RecepteurMultiTrajet2(vmax, vmin, type , nombreEchantillon);
+					//else if (tabdt.size() > 1)System.out.println("Warning : le recepeteur pour canal stationnaire ne fonctionne pas parfaitement pour plus de 2 trajets");
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

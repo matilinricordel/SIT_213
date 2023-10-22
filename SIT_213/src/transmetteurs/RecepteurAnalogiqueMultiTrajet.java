@@ -24,7 +24,7 @@ public class RecepteurAnalogiqueMultiTrajet extends Transmetteur<Float, Float> {
 	 * @throws Exception .
 	 */
 	public RecepteurAnalogiqueMultiTrajet(ArrayList<Integer> tau, ArrayList<Float> alpha) throws Exception {
-			
+		
 		if(tau.size() < 1 || tau.size() > 5 || alpha.size() > 5 || alpha.size() < 1) {
 			throw new ArgumentsException("On ne peut avoir qu'entre 1 et 5 multitrajet max");	
 		}
